@@ -7,9 +7,9 @@ namespace _project.Scrips
 {
     public class CharacterMove : MonoBehaviour
     {
-        [SerializeField, Range(1, 8)] private float _baseSpeed = 2;
+        [SerializeField, Range(4, 12)] private float _baseSpeed = 8;
         [SerializeField, Range(1, 2)] private float _targetSprintMultiplier = 1.5f;
-        [SerializeField] private CharacterController _characterController;
+        [SerializeField] private Rigidbody2D _characterRb;
 
         private CustomInput _input;
         private float _sprintMultiplier = 1;
@@ -55,7 +55,7 @@ namespace _project.Scrips
 
         private void MoveInDirection()
         {
-            _characterController.Move(_inputVector * _baseSpeed * _sprintMultiplier * Time.deltaTime);
+            _characterRb.velocity = _inputVector * _baseSpeed * _sprintMultiplier;
         }
 
         private void OnSprintInputPerformed(InputAction.CallbackContext value)
