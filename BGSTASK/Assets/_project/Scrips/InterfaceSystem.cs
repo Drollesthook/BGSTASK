@@ -1,5 +1,7 @@
 using System;
 
+using _project.Scrips.Infrastructure;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,7 +13,7 @@ public class InterfaceSystem : MonoBehaviour
 
     private void Awake()
     {
-        _input = new CustomInput(); //переделать в один инпут
+        _input = Game.CustomInput;
     }
 
     private void OnEnable()

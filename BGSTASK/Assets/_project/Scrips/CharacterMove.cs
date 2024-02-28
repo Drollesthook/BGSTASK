@@ -1,3 +1,5 @@
+using _project.Scrips.Infrastructure;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,7 +18,7 @@ namespace _project.Scrips
 
         private void Awake()
         {
-            _input = new CustomInput();
+            _input = Game.CustomInput;
         }
 
         private void Update()
