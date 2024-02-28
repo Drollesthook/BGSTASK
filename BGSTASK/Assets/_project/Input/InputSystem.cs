@@ -15,10 +15,10 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class @CustomInput : IInputActionCollection2, IDisposable
+public partial class @InputSystem : IInputActionCollection2, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @CustomInput()
+    public @InputSystem()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""CustomInput"",
@@ -182,13 +182,22 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Inventory"",
+            ""name"": ""Interface"",
             ""id"": ""7abe7030-0156-4d14-8ff0-f46dabfc4e25"",
             ""actions"": [
                 {
                     ""name"": ""ToggleInventory"",
                     ""type"": ""Button"",
                     ""id"": ""ea4cbf50-3a80-4674-8756-d904d9bcae9b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleShop"",
+                    ""type"": ""Button"",
+                    ""id"": ""60362f3a-fb8c-4186-b0cf-95a2d837d8cd"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -217,6 +226,17 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
                     ""action"": ""ToggleInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c229466a-b224-4682-a84b-f8e9bf41bbd4"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleShop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -227,9 +247,10 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
-        // Inventory
-        m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
-        m_Inventory_ToggleInventory = m_Inventory.FindAction("ToggleInventory", throwIfNotFound: true);
+        // Interface
+        m_Interface = asset.FindActionMap("Interface", throwIfNotFound: true);
+        m_Interface_ToggleInventory = m_Interface.FindAction("ToggleInventory", throwIfNotFound: true);
+        m_Interface_ToggleShop = m_Interface.FindAction("ToggleShop", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -293,8 +314,8 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprint;
     public struct PlayerActions
     {
-        private @CustomInput m_Wrapper;
-        public PlayerActions(@CustomInput wrapper) { m_Wrapper = wrapper; }
+        private @InputSystem m_Wrapper;
+        public PlayerActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -327,45 +348,54 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
     }
     public PlayerActions @Player => new PlayerActions(this);
 
-    // Inventory
-    private readonly InputActionMap m_Inventory;
-    private IInventoryActions m_InventoryActionsCallbackInterface;
-    private readonly InputAction m_Inventory_ToggleInventory;
-    public struct InventoryActions
+    // Interface
+    private readonly InputActionMap m_Interface;
+    private IInterfaceActions m_InterfaceActionsCallbackInterface;
+    private readonly InputAction m_Interface_ToggleInventory;
+    private readonly InputAction m_Interface_ToggleShop;
+    public struct InterfaceActions
     {
-        private @CustomInput m_Wrapper;
-        public InventoryActions(@CustomInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @ToggleInventory => m_Wrapper.m_Inventory_ToggleInventory;
-        public InputActionMap Get() { return m_Wrapper.m_Inventory; }
+        private @InputSystem m_Wrapper;
+        public InterfaceActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ToggleInventory => m_Wrapper.m_Interface_ToggleInventory;
+        public InputAction @ToggleShop => m_Wrapper.m_Interface_ToggleShop;
+        public InputActionMap Get() { return m_Wrapper.m_Interface; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(InventoryActions set) { return set.Get(); }
-        public void SetCallbacks(IInventoryActions instance)
+        public static implicit operator InputActionMap(InterfaceActions set) { return set.Get(); }
+        public void SetCallbacks(IInterfaceActions instance)
         {
-            if (m_Wrapper.m_InventoryActionsCallbackInterface != null)
+            if (m_Wrapper.m_InterfaceActionsCallbackInterface != null)
             {
-                @ToggleInventory.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnToggleInventory;
-                @ToggleInventory.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnToggleInventory;
-                @ToggleInventory.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnToggleInventory;
+                @ToggleInventory.started -= m_Wrapper.m_InterfaceActionsCallbackInterface.OnToggleInventory;
+                @ToggleInventory.performed -= m_Wrapper.m_InterfaceActionsCallbackInterface.OnToggleInventory;
+                @ToggleInventory.canceled -= m_Wrapper.m_InterfaceActionsCallbackInterface.OnToggleInventory;
+                @ToggleShop.started -= m_Wrapper.m_InterfaceActionsCallbackInterface.OnToggleShop;
+                @ToggleShop.performed -= m_Wrapper.m_InterfaceActionsCallbackInterface.OnToggleShop;
+                @ToggleShop.canceled -= m_Wrapper.m_InterfaceActionsCallbackInterface.OnToggleShop;
             }
-            m_Wrapper.m_InventoryActionsCallbackInterface = instance;
+            m_Wrapper.m_InterfaceActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @ToggleInventory.started += instance.OnToggleInventory;
                 @ToggleInventory.performed += instance.OnToggleInventory;
                 @ToggleInventory.canceled += instance.OnToggleInventory;
+                @ToggleShop.started += instance.OnToggleShop;
+                @ToggleShop.performed += instance.OnToggleShop;
+                @ToggleShop.canceled += instance.OnToggleShop;
             }
         }
     }
-    public InventoryActions @Inventory => new InventoryActions(this);
+    public InterfaceActions @Interface => new InterfaceActions(this);
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
     }
-    public interface IInventoryActions
+    public interface IInterfaceActions
     {
         void OnToggleInventory(InputAction.CallbackContext context);
+        void OnToggleShop(InputAction.CallbackContext context);
     }
 }

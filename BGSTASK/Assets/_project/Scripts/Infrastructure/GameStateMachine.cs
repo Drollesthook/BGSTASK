@@ -14,6 +14,7 @@ namespace _project.Scripts.Infrastructure
             {
                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader),
                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader),
+               [typeof(GameLoopState)] = new GameLoopState(this),
             };
         }
         public void Enter<TState>() where TState : class, IState

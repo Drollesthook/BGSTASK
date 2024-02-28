@@ -2,7 +2,7 @@
 {
     public class Game
     {
-        public static CustomInput CustomInput;
+        public static InputSystem InputSystem;
         public static InterfaceSystem InterfaceSystem;
         public GameStateMachine StateMachine;
 

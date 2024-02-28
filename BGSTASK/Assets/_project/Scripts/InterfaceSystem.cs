@@ -1,34 +1,37 @@
+using System;
 using _project.Scripts.Infrastructure;
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InterfaceSystem
+namespace _project.Scripts
 {
-    private Canvas _inventoryCanvas;
-    private Canvas _shopCanvas;
-    private CustomInput _input;
-
-    public InterfaceSystem()
+    public class InterfaceSystem : IDisposable
     {
-        _input = Game.CustomInput;
-        _input.Inventory.Enable();
-        _input.Inventory.ToggleInventory.performed += ToggleInventoryHud;
-    }
+        private Canvas _inventoryCanvas;
+        private Canvas _shopCanvas;
+        private InputSystem _inputSystem;
 
-    public void SetInventoryCanvas(GameObject inventoryHudPrefab)
-    {
-        _inventoryCanvas = inventoryHudPrefab.GetComponent<Canvas>();
-    }
+        public InterfaceSystem()
+        {
+            _inputSystem = Game.InputSystem;
+            _inputSystem.Interface.Enable();
+            _inputSystem.Interface.ToggleInventory.performed += ToggleInventoryHud;
+        }
 
-    private void OnDispose()
-    {
-        _input.Inventory.Enable();
-        _input.Inventory.ToggleInventory.performed -= ToggleInventoryHud;
-    }
+        public void SetInventoryCanvas(GameObject inventoryHudPrefab)
+        {
+            _inventoryCanvas = inventoryHudPrefab.GetComponent<Canvas>();
+        }
 
-    private void ToggleInventoryHud(InputAction.CallbackContext value)
-    {
-        _inventoryCanvas.enabled = !_inventoryCanvas.isActiveAndEnabled;
+        private void ToggleInventoryHud(InputAction.CallbackContext value)
+        {
+            _inventoryCanvas.enabled = !_inventoryCanvas.isActiveAndEnabled;
+        }
+
+        public void Dispose()
+        {
+            _inputSystem.Interface.Disable();
+            _inputSystem.Interface.ToggleInventory.performed -= ToggleInventoryHud;
+        }
     }
 }

@@ -12,13 +12,13 @@ namespace _project.Scripts
         [SerializeField] private Rigidbody2D _characterRb;
         [SerializeField] private CharacterAnimation _characterAnimation;
 
-        private CustomInput _input;
+        private InputSystem _inputSystem;
         private float _sprintMultiplier = 1;
         private Vector2 _inputVector = Vector2.zero;
 
         private void Awake()
         {
-            _input = Game.CustomInput;
+            _inputSystem = Game.InputSystem;
         }
 
         private void Update()
@@ -28,20 +28,20 @@ namespace _project.Scripts
 
         private void OnEnable()
         {
-            _input.Player.Enable();
-            _input.Player.Movement.performed += OnMovementInputPerformed;
-            _input.Player.Movement.canceled += OnMovementInputCancelled;
-            _input.Player.Sprint.performed += OnSprintInputPerformed;
-            _input.Player.Sprint.canceled += OnSprintInputCancelled;
+            _inputSystem.Player.Enable();
+            _inputSystem.Player.Movement.performed += OnMovementInputPerformed;
+            _inputSystem.Player.Movement.canceled += OnMovementInputCancelled;
+            _inputSystem.Player.Sprint.performed += OnSprintInputPerformed;
+            _inputSystem.Player.Sprint.canceled += OnSprintInputCancelled;
         }
 
         private void OnDisable()
         {
-            _input.Player.Disable();
-            _input.Player.Movement.performed -= OnMovementInputPerformed;
-            _input.Player.Movement.canceled -= OnMovementInputCancelled;
-            _input.Player.Sprint.performed -= OnSprintInputPerformed;
-            _input.Player.Sprint.canceled -= OnSprintInputCancelled;
+            _inputSystem.Player.Disable();
+            _inputSystem.Player.Movement.performed -= OnMovementInputPerformed;
+            _inputSystem.Player.Movement.canceled -= OnMovementInputCancelled;
+            _inputSystem.Player.Sprint.performed -= OnSprintInputPerformed;
+            _inputSystem.Player.Sprint.canceled -= OnSprintInputCancelled;
         }
 
         private void OnMovementInputPerformed(InputAction.CallbackContext value)

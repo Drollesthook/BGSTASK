@@ -160,13 +160,22 @@
             ]
         },
         {
-            "name": "Inventory",
+            "name": "Interface",
             "id": "7abe7030-0156-4d14-8ff0-f46dabfc4e25",
             "actions": [
                 {
                     "name": "ToggleInventory",
                     "type": "Button",
                     "id": "ea4cbf50-3a80-4674-8756-d904d9bcae9b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleShop",
+                    "type": "Button",
+                    "id": "60362f3a-fb8c-4186-b0cf-95a2d837d8cd",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -193,6 +202,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ToggleInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c229466a-b224-4682-a84b-f8e9bf41bbd4",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleShop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

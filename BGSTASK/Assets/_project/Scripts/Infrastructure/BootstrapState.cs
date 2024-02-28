@@ -23,7 +23,7 @@
 
         private void RegisterServices()
         {
-            Game.CustomInput = new CustomInput();
+            Game.InputSystem = new InputSystem();
             Game.InterfaceSystem = new InterfaceSystem();
         }
 
