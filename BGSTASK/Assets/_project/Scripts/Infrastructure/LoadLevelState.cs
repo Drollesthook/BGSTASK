@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using _project.Scripts.Merchant;
+
+using UnityEngine;
 
 namespace _project.Scripts.Infrastructure
 {
@@ -8,7 +10,8 @@ namespace _project.Scripts.Infrastructure
         private const string _merchantInitialPoint = "MerchantInitialPoint";
         private const string _charPath = "Character/Character";
         private const string _merchantPath = "Merchant/Merchant";
-        private const string _hudPath = "HUD/InventoryHUD";
+        private const string _inventoryHudPath = "HUD/InventoryHUD";
+        private const string _shopHUDPath = "HUD/ShopHUD";
         private readonly GameStateMachine _gameStateMachine;
         private readonly SceneLoader _sceneLoader;
 
@@ -33,9 +36,12 @@ namespace _project.Scripts.Infrastructure
             var merchantInitialPoint = GameObject.FindGameObjectWithTag(_merchantInitialPoint);
             GameObject character = Instantiate(_charPath, playerInitialPoint.transform.position);
             GameObject merchant = Instantiate(_merchantPath, merchantInitialPoint.transform.position);
-            GameObject inventoryHUD = Instantiate(_hudPath);
+            GameObject shopHUD = Instantiate(_shopHUDPath);
+            GameObject inventoryHUD = Instantiate(_inventoryHudPath);
             
             Game.InterfaceSystem.SetInventoryCanvas(inventoryHUD);
+            Game.InterfaceSystem.SetShopCanvas(shopHUD);
+            Game.InterfaceSystem.SubscribeToMerchant(merchant.GetComponent<MerchantBehavior>());
             
             CameraFollow(character);
             

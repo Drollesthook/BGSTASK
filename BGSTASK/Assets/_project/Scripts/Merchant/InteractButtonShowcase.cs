@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace _project.Scripts.Merchant
 {
-    public class InteractButtonShowCase: MonoBehaviour
+    public class InteractButtonShowcase: MonoBehaviour
     {
 
         [SerializeField] private float YAnimationAmplitude = 1000f;
