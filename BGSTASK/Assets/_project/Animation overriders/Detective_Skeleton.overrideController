@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Detective_Skeleton
+  m_Controller: {fileID: 9100000, guid: 07d2eac286e66e8479d99fa0b9c9270f, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 49053b5ba75186c41b7879835a09149a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3501cd396bc0dee41b71acb791a063a0, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4bfe3d05d647aee4f8ca90ee1d461c66, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d30abb3b91af46845b4e97e032faea17, type: 2}
