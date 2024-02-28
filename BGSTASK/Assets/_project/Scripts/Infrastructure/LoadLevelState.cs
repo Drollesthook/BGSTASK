@@ -4,8 +4,10 @@ namespace _project.Scripts.Infrastructure
 {
     public class LoadLevelState : IPayloadedState<string>
     {
-        private const string _initialPoint = "PlayerInitialPoint";
+        private const string _playerInitialPoint = "PlayerInitialPoint";
+        private const string _merchantInitialPoint = "MerchantInitialPoint";
         private const string _charPath = "Character/Character";
+        private const string _merchantPath = "Merchant/Merchant";
         private const string _hudPath = "HUD/InventoryHUD";
         private readonly GameStateMachine _gameStateMachine;
         private readonly SceneLoader _sceneLoader;
@@ -27,8 +29,10 @@ namespace _project.Scripts.Infrastructure
 
         private void OnLoaded()
         {
-            var initialPoint = GameObject.FindGameObjectWithTag(_initialPoint);
-            GameObject character = Instantiate(_charPath, initialPoint.transform.position);
+            var playerInitialPoint = GameObject.FindGameObjectWithTag(_playerInitialPoint);
+            var merchantInitialPoint = GameObject.FindGameObjectWithTag(_merchantInitialPoint);
+            GameObject character = Instantiate(_charPath, playerInitialPoint.transform.position);
+            GameObject merchant = Instantiate(_merchantPath, merchantInitialPoint.transform.position);
             GameObject inventoryHUD = Instantiate(_hudPath);
             
             Game.InterfaceSystem.SetInventoryCanvas(inventoryHUD);
