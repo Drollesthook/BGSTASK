@@ -45,13 +45,13 @@ namespace _project.Scrips
         private void OnMovementInputPerformed(InputAction.CallbackContext value)
         {
             _inputVector = value.ReadValue<Vector2>().normalized;
-            _characterAnimation.ToggleWalkAnimation(true);
+            _characterAnimation.ToggleWalkAnimation(true, _inputVector.x);
         }
 
         private void OnMovementInputCancelled(InputAction.CallbackContext value)
         {
             _inputVector = Vector2.zero;
-            _characterAnimation.ToggleWalkAnimation(false);
+            _characterAnimation.ToggleWalkAnimation(false, 0);
         }
         
         private void OnSprintInputPerformed(InputAction.CallbackContext value)
