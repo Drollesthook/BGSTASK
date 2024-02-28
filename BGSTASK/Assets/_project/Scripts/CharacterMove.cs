@@ -1,9 +1,9 @@
-using _project.Scrips.Infrastructure;
+using _project.Scripts.Infrastructure;
 
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace _project.Scrips
+namespace _project.Scripts
 {
     public class CharacterMove : MonoBehaviour
     {

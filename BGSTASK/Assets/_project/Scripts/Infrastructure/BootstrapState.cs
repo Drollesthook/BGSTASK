@@ -1,4 +1,4 @@
-﻿namespace _project.Scrips.Infrastructure
+﻿namespace _project.Scripts.Infrastructure
 {
     public class BootstrapState : IState
     {

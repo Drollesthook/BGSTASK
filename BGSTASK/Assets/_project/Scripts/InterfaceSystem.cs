@@ -1,6 +1,4 @@
-using System;
-
-using _project.Scrips.Infrastructure;
+using _project.Scripts.Infrastructure;
 
 using UnityEngine;
 using UnityEngine.InputSystem;

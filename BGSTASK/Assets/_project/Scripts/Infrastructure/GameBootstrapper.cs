@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _project.Scrips.Infrastructure
+namespace _project.Scripts.Infrastructure
 {
     public class GameBootstrapper : MonoBehaviour
     {
@@ -9,7 +9,7 @@ namespace _project.Scrips.Infrastructure
         private void Awake()
         {
             _game = new Game();
-            _game._stateMachine.Enter<BootstrapState>();
+            _game.StateMachine.Enter<BootstrapState>();
             DontDestroyOnLoad(this);
         }
     }
