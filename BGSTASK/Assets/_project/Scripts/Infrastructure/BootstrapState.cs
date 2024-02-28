@@ -18,14 +18,13 @@
             _sceneLoader.Load(Initial, onLoaded: EnterLoadLevel);
         }
 
-        private void EnterLoadLevel()
-        {
-            
-        }
+        private void EnterLoadLevel() =>
+            _stateMachine.Enter<LoadLevelState, string>("Gameplay Scene");
 
         private void RegisterServices()
         {
             Game.CustomInput = new CustomInput();
+            Game.InterfaceSystem = new InterfaceSystem();
         }
 
         public void Exit()

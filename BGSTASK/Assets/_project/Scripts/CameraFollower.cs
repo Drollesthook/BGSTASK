@@ -5,7 +5,7 @@ namespace _project.Scripts
     public class CameraFollower : MonoBehaviour
     {
         [SerializeField] private Vector3 _offset = new Vector3(0, 4, -10);
-        [SerializeField] private Transform _targetToFollow;
+        private Transform _targetToFollow;
     
         private void Follow()
         {
@@ -18,9 +18,9 @@ namespace _project.Scripts
                 Follow();
         }
 
-        public void SetTargetToFollow(Transform newTarget)
+        public void SetTargetToFollow(GameObject newTarget)
         {
-            _targetToFollow = newTarget;
+            _targetToFollow = newTarget.transform;
         }
     }
 }
