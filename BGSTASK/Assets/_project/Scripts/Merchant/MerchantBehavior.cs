@@ -23,7 +23,5 @@ namespace _project.Scripts.Merchant
             OnPlayerWalkedOutOfRange?.Invoke();
             _interactButton.Hide();
         }
-    
-    
     }
 }

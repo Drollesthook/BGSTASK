@@ -7,6 +7,7 @@
         Cloth1,
         Cloth2,
         Cloth3,
-        Cloth4
+        Cloth4,
+        Key
     }
 }
