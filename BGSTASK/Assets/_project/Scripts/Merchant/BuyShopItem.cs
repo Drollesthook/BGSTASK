@@ -1,10 +1,12 @@
 using _project.Scripts.Configs;
+using _project.Scripts.Infrastructure;
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 namespace _project.Scripts.Merchant
 {
-    public class ShopItem : MonoBehaviour
+    public class BuyShopItem : MonoBehaviour
     {
         [SerializeField] private Image _iconImage;
         [SerializeField] private TMP_Text _priceText;
@@ -21,7 +23,10 @@ namespace _project.Scripts.Merchant
         public void BuyItem()
         {
             Debug.Log("click to buy" + _typeOfItem);
-            //чекнуть наличие, чекнуть хватает ли денег, переместить в инвентарь или деньгами поморгать
+            if (!Game.CharacterInventorySystem.CanIBuyIt(_price) || _amount < 1) return;
+            _amount--;
+            SetVisual();
+            Game.CharacterInventorySystem.AddItemToTheList(new ShopItemCfg(_price, 1, _typeOfItem, _icon, _overrideController));
         }
 
         public void FillItem(ShopItemCfg config)
@@ -38,7 +43,6 @@ namespace _project.Scripts.Merchant
         private void CheckAmount()
         {
             _checkMark.gameObject.SetActive(_amount < 1);
-            
         }
 
         private void SetVisual()

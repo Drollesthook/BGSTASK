@@ -1,4 +1,6 @@
-﻿namespace _project.Scripts.Infrastructure
+﻿using _project.Scripts.Character;
+
+namespace _project.Scripts.Infrastructure
 {
     public class BootstrapState : IState
     {
@@ -25,6 +27,7 @@
         {
             Game.InputSystem = new InputSystem();
             Game.InterfaceSystem = new InterfaceSystem();
+            Game.CharacterInventorySystem = new CharacterInventorySystem();
         }
 
         public void Exit()

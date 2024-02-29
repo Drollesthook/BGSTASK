@@ -3,7 +3,7 @@ using _project.Scripts.Infrastructure;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace _project.Scripts
+namespace _project.Scripts.Character
 {
     public class CharacterMove : MonoBehaviour
     {

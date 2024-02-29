@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace _project.Scripts.Merchant
 {
-    public class ShopController : MonoBehaviour
+    public class BuyShopController : MonoBehaviour
     {
         [SerializeField] private ShopItemsConfig itemsConfig;
 
@@ -15,7 +15,7 @@ namespace _project.Scripts.Merchant
 
         private void SetItemsInShop()
         {
-            var listOfShopItems = GetComponentsInChildren<ShopItem>();
+            var listOfShopItems = GetComponentsInChildren<BuyShopItem>();
             Debug.Log(itemsConfig.items.Count);
             Debug.Log(listOfShopItems.Length);
             for (int i = 0; i < itemsConfig.items.Count; i++)
