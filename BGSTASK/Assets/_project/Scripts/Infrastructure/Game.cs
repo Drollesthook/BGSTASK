@@ -7,6 +7,7 @@ namespace _project.Scripts.Infrastructure
         public static InputSystem InputSystem;
         public static InterfaceSystem InterfaceSystem;
         public static CharacterInventorySystem CharacterInventorySystem;
+        public static CharacterSkinSystem CharacterSkinSystem;
         public GameStateMachine StateMachine;
 
         public Game(ICoroutineRunner coroutineRunner)

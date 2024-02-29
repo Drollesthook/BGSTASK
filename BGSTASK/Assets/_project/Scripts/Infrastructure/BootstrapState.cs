@@ -28,6 +28,7 @@ namespace _project.Scripts.Infrastructure
             Game.InputSystem = new InputSystem();
             Game.InterfaceSystem = new InterfaceSystem();
             Game.CharacterInventorySystem = new CharacterInventorySystem();
+            Game.CharacterSkinSystem = new CharacterSkinSystem();
         }
 
         public void Exit()

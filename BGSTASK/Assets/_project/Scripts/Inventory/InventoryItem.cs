@@ -1,4 +1,8 @@
+using System;
+
+using _project.Scripts.Character;
 using _project.Scripts.Configs;
+using _project.Scripts.Infrastructure;
 using _project.Scripts.Merchant;
 
 using TMPro;
@@ -18,11 +22,18 @@ namespace _project.Scripts.Inventory
         private int _amount;
         private Sprite _icon;
         private AnimatorOverrideController _overrideController;
+        private CharacterSkinSystem _characterSkinSystem;
         
-        
+
+        private void Start()
+        {
+            _characterSkinSystem = Game.CharacterSkinSystem;
+        }
+
         public void WearSkin()
         {
             if(_overrideController == null) return;
+            _characterSkinSystem.SetNewAnimationOverride(_overrideController);
         }
 
         public void FillItem(ShopItemCfg config)
