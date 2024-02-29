@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using _project.Scripts.Configs;
+using _project.Scripts.Merchant;
 
 namespace _project.Scripts.Character
 {
@@ -25,17 +26,18 @@ namespace _project.Scripts.Character
 
         public void AddItemToTheList(ShopItemCfg newItem)
         {
+            bool isThisItemExists = false;
             foreach (var item in listOfItems)
             {
                 if (item.type == newItem.type)
                 {
                     item.amount++;
+                    isThisItemExists = true;
                     break;
-                } else
-                {
-                    listOfItems.Add(newItem);
-                }
+                } 
             }
+            if(!isThisItemExists)
+                listOfItems.Add(newItem);
 
             moneyAmount -= newItem.price;
             OnInventoryChanged?.Invoke();

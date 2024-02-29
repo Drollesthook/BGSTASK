@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+
+using _project.Scripts.Merchant;
+
 using UnityEngine;
-using UnityEngine.Purchasing;
 
 namespace _project.Scripts.Configs
 {

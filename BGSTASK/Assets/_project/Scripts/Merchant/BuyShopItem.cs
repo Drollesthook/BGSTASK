@@ -22,7 +22,6 @@ namespace _project.Scripts.Merchant
         
         public void BuyItem()
         {
-            Debug.Log("click to buy" + _typeOfItem);
             if (!Game.CharacterInventorySystem.CanIBuyIt(_price) || _amount < 1) return;
             _amount--;
             SetVisual();
@@ -35,7 +34,7 @@ namespace _project.Scripts.Merchant
             _price = config.price;
             _amount = config.amount;
             _icon = config.icon;
-            if (_typeOfItem == TypeOfItem.Cloth)
+            if (config.animatorOverride != null)
                 _overrideController = config.animatorOverride;
             SetVisual();
         }

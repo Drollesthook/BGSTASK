@@ -23,7 +23,6 @@ namespace _project.Scripts.Merchant
         
         public void SellItem()
         {
-            Debug.Log("click to sell" + _typeOfItem);
             Game.CharacterInventorySystem.RemoveItemFromList(_typeOfItem);
         }
 
@@ -34,7 +33,7 @@ namespace _project.Scripts.Merchant
             _price = config.price;
             _amount = config.amount;
             _icon = config.icon;
-            if (_typeOfItem == TypeOfItem.Cloth)
+            if (config.animatorOverride != null)
                 _overrideController = config.animatorOverride;
             SetVisual();
         }

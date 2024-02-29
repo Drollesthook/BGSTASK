@@ -1,7 +1,11 @@
 using System;
 using System.Collections.Generic;
+
+using _project.Scripts.Character;
 using _project.Scripts.Configs;
 using _project.Scripts.Infrastructure;
+
+using TMPro;
 
 using UnityEngine;
 
@@ -9,22 +13,27 @@ namespace _project.Scripts.Merchant
 {
     public class SellShopController : MonoBehaviour
     {
+        [SerializeField] private TMP_Text _goldText;
+
+        private CharacterInventorySystem _characterInventorySystem;
+        
         private void Start()
         {
-            Game.CharacterInventorySystem.OnInventoryChanged += SetItemsInShop;
+            _characterInventorySystem = Game.CharacterInventorySystem;
+            _characterInventorySystem.OnInventoryChanged += SetItemsInShop;
+            SetItemsInShop();
         }
 
         private void OnDestroy()
         {
-            Game.CharacterInventorySystem.OnInventoryChanged -= SetItemsInShop;
+            _characterInventorySystem.OnInventoryChanged -= SetItemsInShop;
         }
 
         private void SetItemsInShop()
         {
-            List<ShopItemCfg> items = Game.CharacterInventorySystem.GetListOfItems();
+            _goldText.SetText(_characterInventorySystem.MoneyAmount.ToString());
+            List<ShopItemCfg> items = _characterInventorySystem.GetListOfItems();
             var listOfShopItems = GetComponentsInChildren<SellShopItem>();
-            Debug.Log(items.Count);
-            Debug.Log(listOfShopItems.Length);
             for (int i = 0; i < items.Count; i++)
             {
                 listOfShopItems[i].FillItem(items[i]);

@@ -1,6 +1,12 @@
-﻿public enum TypeOfItem
+﻿namespace _project.Scripts.Merchant
 {
-    Rock,
-    Wood,
-    Cloth
+    public enum TypeOfItem
+    {
+        Rock,
+        Wood,
+        Cloth1,
+        Cloth2,
+        Cloth3,
+        Cloth4
+    }
 }

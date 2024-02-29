@@ -12,4 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 507cca788e83e554ab4e80568b3d2d1c, type: 3}
   m_Name: NewShopConfig
   m_EditorClassIdentifier: 
-  items: []
+  items:
+  - price: 5
+    amount: 1
+    type: 2
+    icon: {fileID: 21300000, guid: f776e2e9690501e41a2e5b81ceb440b9, type: 3}
+    animatorOverride: {fileID: 22100000, guid: b1837ccef206baa438cb422699703cd8, type: 2}
+  - price: 10
+    amount: 1
+    type: 3
+    icon: {fileID: 21300016, guid: f776e2e9690501e41a2e5b81ceb440b9, type: 3}
+    animatorOverride: {fileID: 22100000, guid: a287e73abbf59654d926ab06a6f7d2cb, type: 2}
+  - price: 20
+    amount: 1
+    type: 4
+    icon: {fileID: -1651996710, guid: 117b1ee44e81e4742be0c99d24023f7d, type: 3}
+    animatorOverride: {fileID: 22100000, guid: 326dbab5fde447c4ea07da4bfd172eac, type: 2}
+  - price: 40
+    amount: 1
+    type: 5
+    icon: {fileID: 75186657, guid: 117b1ee44e81e4742be0c99d24023f7d, type: 3}
+    animatorOverride: {fileID: 22100000, guid: d1d324a3783f2484c9de030751aa1d58, type: 2}
+  - price: 3
+    amount: 20
+    type: 0
+    icon: {fileID: 21300000, guid: 99bbc83bebbd36849b732a06e55ad60e, type: 3}
+    animatorOverride: {fileID: 0}
+  - price: 5
+    amount: 100
+    type: 1
+    icon: {fileID: 21300000, guid: efe2ac1e04c61d1429e370eb4e493aa0, type: 3}
+    animatorOverride: {fileID: 0}
